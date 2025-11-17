@@ -39,9 +39,9 @@ DotaStats is a scalable microservices-based ecosystem for aggregating and servin
    cd DotaStats
    ```
 2. Build and run the system using Docker Compose
-  ```bash
-  docker-compose up --build
-  ```
+   ```bash
+   docker-compose up --build
+   ```
 3. Open the API Gateway in browser to inspect Swagger UI
    ```bash
    http://localhost:5000/swagger
