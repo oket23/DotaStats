@@ -47,15 +47,14 @@ DotaStats is a scalable microservices-based ecosystem for aggregating and servin
    http://localhost:5000/swagger
    ```
 4. Interact with the Telegram Bot
-
-- Register your bot via **BotFather**
-- Update the `appsettings.json` or **environment variables** with your Telegram Bot token and gateway URL
-- Start the bot service:
-
-```bash
-cd TelegramBot
-dotnet run
-```
+   - Register your bot via **BotFather**
+   - Update the `appsettings.json` or **environment variables** with your Telegram Bot token and gateway URL
+   - Start the bot service:
+   
+   ```bash
+   cd TelegramBot
+   dotnet run
+   ```
 
 ## Docker & Deployment
 
