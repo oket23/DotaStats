@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+
+  gateway.api:
+    image: ${DOCKER_REGISTRY-}gatewayapi
+    build:
+      context: .
+      dockerfile: Gateway.Api/Dockerfile
+    ports:
+        - "5000:5000"
+    networks:
+      - proxybackend
+    environment:
+        - ASPNETCORE_URLS=http://+:5000
+    
+  heros.api:
+    image: ${DOCKER_REGISTRY-}herosapi
+    build:
+      context: .
+      dockerfile: Heros.Api/Dockerfile
+    ports:
+        - "5100:5100"
+    networks:
+      - proxybackend
+    environment: 
+        - ASPNETCORE_URLS=http://+:5100
+        - Redis__ConnectionString=redis:6379
+
+  proplayers.api:
+    image: ${DOCKER_REGISTRY-}proplayersapi
+    build:
+      context: .
+      dockerfile: ProPlayers.Api/Dockerfile
+    ports:
+        - "5200:5200"
+    networks:
+      - proxybackend
+    environment:
+        - ASPNETCORE_URLS=http://+:5200
+        - Redis__ConnectionString=redis:6379
+
+  proteams.api:
+    image: ${DOCKER_REGISTRY-}proteamsapi
+    build:
+      context: .
+      dockerfile: ProTeams.Api/Dockerfile
+    ports:
+        - "5300:5300"
+    networks:
+      - proxybackend
+    environment:
+        - ASPNETCORE_URLS=http://+:5300
+        - Redis__ConnectionString=redis:6379
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - proxybackend
+
+  ui:
+    image: ${DOCKER_REGISTRY-}ui
+    build:
+      context: .
+      dockerfile: UI/Dockerfile
+    environment:
+      HerosApiPath: http://gateway.api:5000/heros-api/
+      ProPlayersApiPath: http://gateway.api:5000/proplayers-api/
+      ProTeamsApiPath: http://gateway.api:5000/proteams-api/
+    networks:
+      - proxybackend
+
+networks:
+  proxybackend:
+    name: proxybackend
+    driver: bridge
+
+
+
+
+
+

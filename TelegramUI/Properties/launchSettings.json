@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TelegramUI": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
